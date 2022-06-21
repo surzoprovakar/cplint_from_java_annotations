@@ -1,0 +1,7 @@
+*.class
+*.o
+*.pl
+*.back
+*.so
+/anns/*.class
+cplint.cpp
