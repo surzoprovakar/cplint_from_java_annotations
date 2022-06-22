@@ -13,7 +13,7 @@ javac:
 header:
 	    javac -h .  Coin.java
 
-lib: Coin.cpp
+lib: 
 		g++  -Wno-unused-result $(INCLUDES) -shared -fPIC -o libPrologFromCpp.so init.cpp cplint.cpp
 
 run:
