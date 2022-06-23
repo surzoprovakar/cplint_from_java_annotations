@@ -27,30 +27,33 @@ public class PrologGenerator {
 		for (int i = 0; i < anns.s_dpd.length; i++) {
 			suffix = 1;	
 			AnnsData.DependProbData dpd = anns.s_dpd[i];
-			if (anns.s_pd.event.equals(dpd.event)) {
-				DP dp = new DP();	
-				dp.outcome = "outcome" + suffix;	
-				dp.probFirst = anns.s_pd.val / 100.00;		
-				dp.probSecond = dpd.prob.val / 100.0;
-				probs.add(dp);
-				dp = new DP();	
-				dp.outcome = "outcome" + (++suffix);	
-				dp.probFirst = anns.s_pd.val / 100.00;		
-				dp.probSecond = (100 - dpd.prob.val) / 100.0;
-				probs.add(dp);
-			}
-			else if (("!" + anns.s_pd.event).equals(dpd.event)) {
-				DP dp = new DP();	
-				dp.outcome = "outcome" + suffix;	
-				dp.probFirst = (100 - anns.s_pd.val) / 100.00;		
-				dp.probSecond = (100 - dpd.prob.val) / 100.0;
-				probs.add(dp);
-				dp = new DP();	
-				dp.outcome = "outcome" + (++suffix);	
-				dp.probFirst = anns.s_pd.val / 100.00;		
-				dp.probSecond = dpd.prob.val / 100.0;
-				probs.add(dp);
-			}
+
+			for (int j = 0; j < dpd.event.length; j++) {
+				if (anns.s_pd[j].event.equals(dpd.event)) {
+					DP dp = new DP();	
+					dp.outcome = "outcome" + suffix;	
+					dp.probFirst = anns.s_pd[j].val / 100.00;		
+					dp.probSecond = dpd.prob.val / 100.0;
+					probs.add(dp);
+					dp = new DP();	
+					dp.outcome = "outcome" + (++suffix);	
+					dp.probFirst = anns.s_pd[j].val / 100.00;		
+					dp.probSecond = (100 - dpd.prob.val) / 100.0;
+					probs.add(dp);
+				}
+				else if (("!" + anns.s_pd[j].event).equals(dpd.event)) {
+					DP dp = new DP();	
+					dp.outcome = "outcome" + suffix;	
+					dp.probFirst = (100 - anns.s_pd[j].val) / 100.00;		
+					dp.probSecond = (100 - dpd.prob.val) / 100.0;
+					probs.add(dp);
+					dp = new DP();	
+					dp.outcome = "outcome" + (++suffix);	
+					dp.probFirst = anns.s_pd[j].val / 100.00;		
+					dp.probSecond = dpd.prob.val / 100.0;
+					probs.add(dp);
+				}
+			}			
 		}				
 	}
 
@@ -74,8 +77,11 @@ public class PrologGenerator {
 				probs.get(2).outcome, probs.get(2).probSecond, 
 				probs.get(3).outcome, probs.get(3).probSecond);	
 		pw.printf("%s(V), \\+ %s3(V).\n", e, o);
-		pw.printf("outcome3(V) : %f ; (\\+ outcome3(V)) : %f.\n", 
-			 	anns.s_pd.val/100.0, (100.00 - anns.s_pd.val) / 100.0);
+		for (int i = 0; i < anns.s_pd.length; i++) {
+			pw.printf("outcome3(V) : %f ; (\\+ outcome3(V)) : %f.\n", 
+			 	anns.s_pd[i].val/100.0, (100.00 - anns.s_pd[i].val) / 100.0);
+		}
+		
 		pw.println(e + "(v).");
 		pw.println(":- end_lpad.");
 		pw.printf("p%s1(V) :- prob(%s1(v), V).\n", o, o);

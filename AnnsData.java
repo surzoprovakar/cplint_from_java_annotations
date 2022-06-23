@@ -24,6 +24,11 @@ public class AnnsData {
 	}
 
 	public static class ProbData {
+		public static void factory(Prob[] pa) {
+			s_pd = new ProbData[pa.length];		
+			for (int i = 0; i < pa.length; i++)
+				s_pd[i] = new ProbData(pa[i]);	
+		}
 		public ProbData(Prob p) {
 			this.event = p.event(); 
 			this.outcome = p.outcome();
@@ -51,13 +56,13 @@ public class AnnsData {
 			this.event = dp.event(); 
 			this.prob = new ProbData(dp.prob());
 		}	
-		public final String event;
+		public final String[] event;
 		public final ProbData prob;
 	}
 
 	public static DependProbData[] s_dpd;
 	public static OutcomeRangeData s_ord;
-	public static ProbData s_pd;
+	public static ProbData[] s_pd;
 	public static int s_getProbOutcome; 
 	public static String s_className;
 
@@ -74,8 +79,11 @@ public class AnnsData {
 		ord += "max: " + s_ord.max + "}\n";
 
 		String dpd = "DependProbData {\n";
-		for (DependProbData d : s_dpd) {	
-			dpd += "event: " +  d.event + "\n";
+		for (DependProbData d : s_dpd) {
+			for (String e : d.event) {
+				dpd += "event: " +  e + "\n";
+			}	
+			
 			dpd += "prob: " + d.prob + "\n";
 		}
 		dpd += "}\n";

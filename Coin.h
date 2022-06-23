@@ -9,10 +9,10 @@ extern "C" {
 #endif
 /*
  * Class:     Coin
- * Method:    probHeads
+ * Method:    probAlarm
  * Signature: ()F
  */
-JNIEXPORT jfloat JNICALL Java_Coin_probHeads
+JNIEXPORT jfloat JNICALL Java_Coin_probAlarm
   (JNIEnv *, jclass);
 
 #ifdef __cplusplus

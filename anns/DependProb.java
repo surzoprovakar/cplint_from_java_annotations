@@ -3,7 +3,7 @@ import java.lang.annotation.Repeatable;
 
 @Repeatable(DependProbs.class)
 public @interface DependProb {
-	String event();
+	String[] event();
 	Prob prob();
 }
 

@@ -12,6 +12,7 @@ public class AnnProc extends AbstractProcessor {
 	public synchronized void init(ProcessingEnvironment env) {
 		super.init(env);
 	}
+
 	@Override
 	public boolean process(Set<? extends TypeElement> set,
 			RoundEnvironment roundEnv) {
@@ -24,10 +25,27 @@ public class AnnProc extends AbstractProcessor {
 		generateCppFile();
 		return true;
 	}
+
+	// private void processProbAnn(RoundEnvironment roundEnv) {
+	// 	Set<? extends Element> annotatedElements =
+	// 		roundEnv.getElementsAnnotatedWith(Prob.class);
+
+	// 	for (Element element : annotatedElements) {
+	// 		if (element.getKind() == ElementKind.METHOD) {
+	// 			data.s_className = 
+	// 			element.
+	// 			getEnclosingElement().
+	// 			getSimpleName().toString();
+	// 			ExecutableElement el = (ExecutableElement) element;
+	// 			Prob prob = el.getAnnotation(Prob.class);
+	// 			data.s_pd = new AnnsData.ProbData(prob);
+	// 		}
+	// 	}
+	// }
+
 	private void processProbAnn(RoundEnvironment roundEnv) {
 		Set<? extends Element> annotatedElements =
-			roundEnv.getElementsAnnotatedWith(Prob.class);
-
+			roundEnv.getElementsAnnotatedWith(Probs.class);
 		for (Element element : annotatedElements) {
 			if (element.getKind() == ElementKind.METHOD) {
 				data.s_className = 
@@ -35,11 +53,12 @@ public class AnnProc extends AbstractProcessor {
 				getEnclosingElement().
 				getSimpleName().toString();
 				ExecutableElement el = (ExecutableElement) element;
-				Prob prob = el.getAnnotation(Prob.class);
-				data.s_pd = new AnnsData.ProbData(prob);
+				Prob[] p = el.getAnnotationsByType(Prob.class);
+				AnnsData.ProbData.factory(p);
 			}
 		}
 	}
+
 	private void processOutcomeRange(RoundEnvironment roundEnv) {
 		Set<? extends Element> annotatedElements =
 			roundEnv.getElementsAnnotatedWith(OutcomeRange.class);
@@ -85,6 +104,7 @@ public class AnnProc extends AbstractProcessor {
 		anns.add("anns.DependProbs");
 		return anns;
 	}
+
 	private void generatePrologFile() {
 		System.out.println("data model: " + data);
 		PrologGenerator gen = new PrologGenerator(data);
