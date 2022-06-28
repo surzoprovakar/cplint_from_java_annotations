@@ -1,7 +1,9 @@
 *.class
 *.o
-*.pl
+!/prolog_references/*.pl
+/*.pl
 *.back
 *.so
 /anns/*.class
 cplint.cpp
+.vscode
