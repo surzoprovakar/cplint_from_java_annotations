@@ -30,7 +30,7 @@ public class Coin {
 
 	static {
 		System.loadLibrary("PrologFromCpp");	
-		thresholAlarm = probAlarm();
+		thresholdAlarm = probAlarm();
 	}
 
 	@OutcomeRange(ann=Prob.class, min=0, max=1)
@@ -48,10 +48,10 @@ public class Coin {
 
 	public static native float probAlarm();
 
-	private final static float thresholAlarm;
+	private final static float thresholdAlarm;
 
 	public static void main(String ... args) {
-		System.out.println("Prolog set thresholdAlarm to " + thresholAlarm);
+		System.out.println("Prolog set thresholdAlarm to " + thresholdAlarm);
 
 		//System.out.println("Prolog set thresholdTails to " + (1 - thresholdHeads));
 	}
