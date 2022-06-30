@@ -19,6 +19,6 @@ lib:
 run:
 		LD_PRELOAD=$(PRELOAD) LD_LIBRARY_PATH=./ java Coin
 clean:
-	@rm -rf *.class ./anns/*.class *.so cplint.cpp cplint.pl
+	@rm -rf *.class ./Annotations/*.class *.so cplint.cpp cplint.pl
 		
 

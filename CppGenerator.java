@@ -58,7 +58,7 @@ public class CppGenerator {
 		return "";
 	}
 
-	public String generate() {
+	public String Generate() {
 		String funcDecl = getFunctionDecl();
 		try {
 			PrintWriter pw = new PrintWriter(new File(cppFileName));

@@ -57,7 +57,7 @@ public class PrologGenerator {
 		}				
 	}
 
-	public String generate() {
+	public String Generate() {
 		inferProbValues();
 		System.out.println("dp " + probs);
 
