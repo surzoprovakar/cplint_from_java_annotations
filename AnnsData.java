@@ -13,7 +13,7 @@ public class AnnsData {
 			this.probValue = e.probValue();
 		}	
 		public final String name;
-		public final int probValue;
+		public final double probValue;
 		public String toString() {
 			String res = "";
 			res += "EventName: " + name + "\n";
@@ -35,13 +35,13 @@ public class AnnsData {
 		}
 		public final Event[] conditionalEvents;
     	public final String incidentName;
-    	public final int probValue;
+    	public final double probValue;
 		public String toString() {
 			String res = "";
 			for (Event e : conditionalEvents) {
-				res += e.name() + " ";
+				res += "ConditioanlEventName: " + e.name() + " ";
 			}
-			res += "\n" + "OutcomeName " + incidentName + "\n";
+			res += "\n" + "OutcomeName: " + incidentName + "\n";
 			res += "ProbValue " + probValue + "\n";
 			return res;
 		}

@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,7 +14,7 @@ public class CppGenerator {
 
 	public CppGenerator(AnnsData anns) {
 		this.anns = anns;
-		this.headerFileName = anns.s_className + ".h";
+		this.headerFileName = "Probability.h";
 	}
 
 	/*
@@ -69,13 +68,13 @@ public class CppGenerator {
 			pw.println();		
 			pw.println("extern void init();\n\n");
 			pw.println(funcDecl + "{");
-			String on = o + anns.s_getProbOutcome;
+			String on = o;
 			
 			pw.println("init();");
 			pw.println(String.format("term_t ans%s, prob%s;", on, on));
 		
 			pw.println(String.format("functor_t p%s;", on));
-			pw.println(String.format("p%s = PL_new_functor(PL_new_atom(\"p%s\"), 1);", 
+			pw.println(String.format("p%s = PL_new_functor(PL_new_atom(\"%s1\"), 1);", 
 						on, on));
 			pw.println(String.format("ans%s = PL_new_term_ref();", on));
 			pw.println(String.format("prob%s = PL_new_term_ref();", on));
