@@ -40,10 +40,19 @@ public class Probability {
 
 	// region epidemic.pl || needs 2nd probvalue
 
-	@Event(name = "flu", probValue = 100)
-	@Event(name = "cold", probValue = 70)
-	@Outcome(conditionalEvents = {@Event(name = "flu"), @Event(name = "cold")}, incidentName = "epidemic", probValue = 60)
-	@GetProbability(incidentName = "epidemic")
+	// @Event(name = "flu", probValue = 100)
+	// @Event(name = "cold", probValue = 70)
+	// @Outcome(conditionalEvents = {@Event(name = "flu"), @Event(name = "cold")}, incidentName = "epidemic", probValue = 60)
+	// @GetProbability(incidentName = "epidemic")
+
+	// endregion
+
+	// region eruption.pl || needs 2nd probvalue
+
+	@Event(name = "fault_rupture", probValue = 100)
+	@Event(name = "sudden_energy_release", probValue = 70)
+	@Outcome(conditionalEvents = {@Event(name = "fault_rupture"), @Event(name = "sudden_energy_release")}, incidentName = "eruption", probValue = 60)
+	@GetProbability(incidentName = "eruption")
 
 	// endregion
 
