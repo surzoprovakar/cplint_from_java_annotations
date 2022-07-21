@@ -57,7 +57,9 @@ public class AnnsData {
 		
 		String ed = "EventData {\n";	
 		for (EventData e : s_evs) {
-			ed += e.toString();
+			if (e.name.length() != 0) {
+				ed += e.toString();
+			}
 		}
 		ed += "}\n";
 

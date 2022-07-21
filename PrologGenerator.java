@@ -54,11 +54,13 @@ public class PrologGenerator {
 		for (int i = 0; i < anns.s_evs.length; i++) {
 			AnnsData.EventData ed = anns.s_evs[i];
 			EventDB eb = new EventDB();
-			eb.name = ed.name;
-			eb.probFirst = ed.probValue / 100.00;
-			eb.probSecond = (100.00 - ed.probValue) / 100.00;
+			if (ed.name.length() != 0) {
+				eb.name = ed.name;
+				eb.probFirst = ed.probValue / 100.00;
+				eb.probSecond = (100.00 - ed.probValue) / 100.00;
 
-			events.add(eb);
+				events.add(eb);
+			}
 		}
 
 		for (int i = 0; i < anns.s_ots.length; i++) {
