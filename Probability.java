@@ -68,13 +68,22 @@ public class Probability {
 
 	// region bag game
 
-	@Event(name = "red", probValue = 40)
-	@Event(name = "green", probValue = 90)
-	@Event(name = "blue", probValue = 50)
-	@Event(name = "yellow", probValue = 60)
-	@Outcome(conditionalEvents = {@Event(name = "red"), @Event(name = "green")}, incidentName = "win", probValue = 100)
-	@Outcome(conditionalEvents = {@Event(name = "blue"), @Event(name = "yellow")}, incidentName = "win", probValue = 100)
-	@GetProbability(incidentName = "win")
+	// @Event(name = "red", probValue = 40)
+	// @Event(name = "green", probValue = 90)
+	// @Event(name = "blue", probValue = 50)
+	// @Event(name = "yellow", probValue = 60)
+	// @Outcome(conditionalEvents = {@Event(name = "red"), @Event(name = "green")}, incidentName = "win", probValue = 100)
+	// @Outcome(conditionalEvents = {@Event(name = "blue"), @Event(name = "yellow")}, incidentName = "win", probValue = 100)
+	// @GetProbability(incidentName = "win")
+	// endregion
+
+	// region light.pl
+
+	@Event(name = "push", probValue = 100)
+	@Event()
+	@Outcome(conditionalEvents = {@Event(name = "push")}, incidentName = "light", probValue = 40)
+	@Outcome(conditionalEvents = {@Event(name = "!light")}, incidentName = "replace", probValue = 100)
+	@GetProbability(incidentName = "light")
 	// endregion
 
 	public static native float probIncident();
