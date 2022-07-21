@@ -38,7 +38,7 @@ public class Probability {
 
 	// endregion
 
-	// region epidemic.pl || needs 2nd probvalue
+	// region epidemic.pl || needs 2nd probValue
 
 	// @Event(name = "flu", probValue = 100)
 	// @Event(name = "cold", probValue = 70)
@@ -47,12 +47,22 @@ public class Probability {
 
 	// endregion
 
-	// region eruption.pl || needs 2nd probvalue
+	// region eruption.pl || needs 2nd probValue
+
+	// @Event(name = "fault_rupture", probValue = 100)
+	// @Event(name = "sudden_energy_release", probValue = 70)
+	// @Outcome(conditionalEvents = {@Event(name = "fault_rupture"), @Event(name = "sudden_energy_release")}, incidentName = "eruption", probValue = 60)
+	// @GetProbability(incidentName = "eruption")
+
+	// endregion
+
+	// region earthquake.pl || needs 2nd probValue
 
 	@Event(name = "fault_rupture", probValue = 100)
-	@Event(name = "sudden_energy_release", probValue = 70)
-	@Outcome(conditionalEvents = {@Event(name = "fault_rupture"), @Event(name = "sudden_energy_release")}, incidentName = "eruption", probValue = 60)
-	@GetProbability(incidentName = "eruption")
+	@Event(name = "volcanic_eruption", probValue = 100)
+	@Outcome(conditionalEvents = {@Event(name = "fault_rupture")}, incidentName = "earthquake_strong", probValue = 30)
+	@Outcome(conditionalEvents = {@Event(name = "volcanic_eruption")}, incidentName = "earthquake_strong", probValue = 20)
+	@GetProbability(incidentName = "earthquake_strong")
 
 	// endregion
 
