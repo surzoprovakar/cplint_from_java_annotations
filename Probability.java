@@ -58,12 +58,23 @@ public class Probability {
 
 	// region earthquake.pl || needs 2nd probValue
 
-	@Event(name = "fault_rupture", probValue = 100)
-	@Event(name = "volcanic_eruption", probValue = 100)
-	@Outcome(conditionalEvents = {@Event(name = "fault_rupture")}, incidentName = "earthquake_strong", probValue = 30)
-	@Outcome(conditionalEvents = {@Event(name = "volcanic_eruption")}, incidentName = "earthquake_strong", probValue = 20)
-	@GetProbability(incidentName = "earthquake_strong")
+	// @Event(name = "fault_rupture", probValue = 100)
+	// @Event(name = "volcanic_eruption", probValue = 100)
+	// @Outcome(conditionalEvents = {@Event(name = "fault_rupture")}, incidentName = "earthquake_strong", probValue = 30)
+	// @Outcome(conditionalEvents = {@Event(name = "volcanic_eruption")}, incidentName = "earthquake_strong", probValue = 20)
+	// @GetProbability(incidentName = "earthquake_strong")
 
+	// endregion
+
+	// region bag game
+
+	@Event(name = "red", probValue = 40)
+	@Event(name = "green", probValue = 90)
+	@Event(name = "blue", probValue = 50)
+	@Event(name = "yellow", probValue = 60)
+	@Outcome(conditionalEvents = {@Event(name = "red"), @Event(name = "green")}, incidentName = "win", probValue = 100)
+	@Outcome(conditionalEvents = {@Event(name = "blue"), @Event(name = "yellow")}, incidentName = "win", probValue = 100)
+	@GetProbability(incidentName = "win")
 	// endregion
 
 	public static native float probIncident();
