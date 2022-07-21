@@ -6,6 +6,16 @@ public class Probability {
 		probabilityValue = probIncident();
 	}
 
+	// region coin.pl
+
+	// @Event(name = "fair", probValue = 90)
+	// @Event()
+	// @Outcome(conditionalEvents = {@Event(name = "fair")}, incidentName = "head", probValue = 50)
+	// @Outcome(conditionalEvents = {@Event(name = "!fair")}, incidentName = "head", probValue = 60)
+	// @GetProbability(incidentName = "head")
+
+	//endregion
+
 	// region alarm.pl
 
 	// @Event(name = "burglary", probValue = 10)
@@ -18,23 +28,22 @@ public class Probability {
 
 	// endregion
 
-	// region coin.pl
+	// region sneezing.pl || needs 2nd ProbValue
 
-	// @Event(name = "fair", probValue = 90)
-	// @Event()
-	// @Outcome(conditionalEvents = {@Event(name = "fair")}, incidentName = "head", probValue = 50)
-	// @Outcome(conditionalEvents = {@Event(name = "!fair")}, incidentName = "head", probValue = 60)
-	// @GetProbability(incidentName = "head")
+	// @Event(name = "flu", probValue = 100)
+	// @Event(name = "hay_fever", probValue = 100)
+	// @Outcome(conditionalEvents = {@Event(name = "flu")}, incidentName = "strong_sneezing", probValue = 30)
+	// @Outcome(conditionalEvents = {@Event(name = "hay_fever")}, incidentName = "strong_sneezing", probValue = 20)
+	// @GetProbability(incidentName = "strong_sneezing")
 
-	//endregion
+	// endregion
 
-	// region sneezing.pl
+	// region epidemic.pl || needs 2nd probvalue
 
 	@Event(name = "flu", probValue = 100)
-	@Event(name = "hay_fever", probValue = 100)
-	@Outcome(conditionalEvents = {@Event(name = "flu")}, incidentName = "strong_sneezing", probValue = 30)
-	@Outcome(conditionalEvents = {@Event(name = "hay_fever")}, incidentName = "strong_sneezing", probValue = 20)
-	@GetProbability(incidentName = "strong_sneezing")
+	@Event(name = "cold", probValue = 70)
+	@Outcome(conditionalEvents = {@Event(name = "flu"), @Event(name = "cold")}, incidentName = "epidemic", probValue = 60)
+	@GetProbability(incidentName = "epidemic")
 
 	// endregion
 
