@@ -77,13 +77,27 @@ public class Probability {
 	// @GetProbability(incidentName = "win")
 	// endregion
 
-	// region light.pl
+	// region light.pl 
 
-	@Event(name = "push", probValue = 100)
+	// @Event(name = "push", probValue = 100)
+	// @Event()
+	// @Outcome(conditionalEvents = {@Event(name = "push")}, incidentName = "light", probValue = 40)
+	// @Outcome(conditionalEvents = {@Event(name = "!light")}, incidentName = "replace", probValue = 100)
+	// @GetProbability(incidentName = "light")
+	// endregion
+
+	// region simpson.pl || getprobability is not full. it can also take condition
+
+	@Event(name = "female", probValue = 50)
 	@Event()
-	@Outcome(conditionalEvents = {@Event(name = "push")}, incidentName = "light", probValue = 40)
-	@Outcome(conditionalEvents = {@Event(name = "!light")}, incidentName = "replace", probValue = 100)
-	@GetProbability(incidentName = "light")
+	@Outcome(conditionalEvents = {@Event(name = "drug"), @Event(name = "!female")}, incidentName = "recovery", probValue = 60)
+	@Outcome(conditionalEvents = {@Event(name = "!drug"), @Event(name = "!female")}, incidentName = "recovery", probValue = 70)
+	@Outcome(conditionalEvents = {@Event(name = "drug"), @Event(name = "female")}, incidentName = "recovery", probValue = 20)
+	@Outcome(conditionalEvents = {@Event(name = "!drug"), @Event(name = "female")}, incidentName = "recovery", probValue = 30)
+	@Outcome(conditionalEvents = {@Event(name = "!female")}, incidentName = "drug", probValue = 75)
+	@Outcome(conditionalEvents = {@Event(name = "female")}, incidentName = "drug", probValue = 25)
+	@GetProbability(incidentName = "recovery")
+
 	// endregion
 
 	public static native float probIncident();
